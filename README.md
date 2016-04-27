@@ -2,6 +2,7 @@
 
 1. Launch your Message Queue Server a Project Root
 ```
+# 建議 work 會去執行 Python 程式必須再跟你 *.py 同一層目錄否則執行會找不到 job_function_collection.py 檔案
 rq worker
 ```
 
