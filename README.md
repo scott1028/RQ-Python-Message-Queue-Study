@@ -44,6 +44,7 @@ from job_function_collection import count_words_at_url
 
 # 把 "執行 Function 的 Job" 推送到 Message Queue 執行
 # timeout: job 應該在 20 秒內被執行否則就 Timeout 被列為失敗佇列
+# timeout: job 應該在 20 秒內被執行否則就 Timeout 被列為失敗佇列, Timeout 會被中斷 Job 執行，也就是強制 kill，但是先前已經執行過得部份仍然有效。
 # By default, jobs should execute within 180 seconds.
 result_fd = q.enqueue(count_words_at_url, 'http://nvie.com')
 result_fd = q.enqueue_call(count_words_at_url, 'http://nvie.com', result_ttl=20)
@@ -64,6 +65,7 @@ print result_fd.result
 
 - ref: https://pypi.python.org/pypi/redis
 - ref: http://python-rq.org/docs/results/
+- ref: http://python-rq.org/docs/exceptions/  (Job Fail 的處理機制)
 
 ![Alt text](https://raw.githubusercontent.com/scott1028/RQ-Python-Message-Queue-Study/master/worker_config.jpg "Custom Worker")
 
