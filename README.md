@@ -16,7 +16,7 @@ rq info
 1. Launch your Message Queue Server a Project Root(你也可以事後在啟動，他就是抓 Redis 內的 Job 逐步執行而已。)
 ```
 # 建議 work 會去執行 Python 程式必須再跟你 *.py 同一層目錄否則執行會找不到 job_function_collection.py 檔案
-# 你可以啟動很多个 Worker 他們會分擔 Queue 內的工作！
+# 你可以啟動很多个 Worker 他們會分擔 Queue 內的工作！甚至你可以把 Job Producer 跟 Job Cumsumer 放在不同台機器！
 # 預設連線 Redis localhost:6379！
 rq worker
 rq worker
