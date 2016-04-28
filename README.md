@@ -39,6 +39,9 @@ from rq import Queue
 q = Queue(connection=Redis('127.0.0.1', 6379, '1'))  # index of redis
 # q = Queue(connection=Redis())
 
+print 'Current Job Queue Total: ', len(q)
+print q.get_jobs()
+
 # 即使 Job Comsumer(qr worker) 目前沒有啟動也不會出錯，本 Job Client 會將 Job 先推送到 Redis 等 worker 啟動後就會逐步執行了！
 from job_function_collection import count_words_at_url
 
@@ -65,8 +68,7 @@ print result_fd.result
 print result_fd.get_id()
 print result_fd.status
 print result_fd.to_dict()
-import pdb; pdb.set_trace()
-
+# import pdb; pdb.set_trace()
 ```
 
 #### Others
