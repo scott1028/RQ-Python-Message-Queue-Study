@@ -54,3 +54,5 @@ print result_fd.result
 #### Others
 
 - ref: https://pypi.python.org/pypi/redis
+
+![Alt text](https://raw.githubusercontent.com/scott1028/RQ-Python-Message-Queue-Study/master/worker_config.jpg "Custom Worker")
