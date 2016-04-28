@@ -33,6 +33,7 @@ from redis import Redis
 from rq import Queue
 
 # 建立 Queue 使用 Redis
+# Job Producer 的 Redis 與 Job Comsumer 的 Redis 可以設定為不同的。但是一般人不會這樣做！
 q = Queue(connection=Redis())
 
 from job_function_collection import count_words_at_url
@@ -49,3 +50,7 @@ time.sleep(1)
 # 等個幾秒可以得到正確結果
 print result_fd.result
 ```
+
+#### Others
+
+- ref: https://pypi.python.org/pypi/redis
