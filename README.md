@@ -44,6 +44,7 @@ from job_function_collection import count_words_at_url
 
 # 把 "執行 Function 的 Job" 推送到 Message Queue 執行
 result_fd = q.enqueue(count_words_at_url, 'http://nvie.com')
+result_fd = q.enqueue_call(count_words_at_url, 'http://nvie.com', result_ttl=20)
 
 # 當下不會有結果因為是 Async 的
 print result_fd.result
@@ -52,11 +53,21 @@ import time
 time.sleep(1)
 
 # 等個幾秒可以得到正確結果
+# Executing Result Message 保存預設是 500 秒。
 print result_fd.result
 ```
 
 #### Others
 
 - ref: https://pypi.python.org/pypi/redis
+- ref: http://python-rq.org/docs/results/
 
 ![Alt text](https://raw.githubusercontent.com/scott1028/RQ-Python-Message-Queue-Study/master/worker_config.jpg "Custom Worker")
+
+- Client Result Message 控管(由 Producer 控制)
+```
+q.enqueue_call(func=foo)  # result expires after 500 secs (the default)
+q.enqueue_call(func=foo, result_ttl=86400)  # result expires after 1 day
+q.enqueue_call(func=foo, result_ttl=0)  # result gets deleted immediately
+q.enqueue_call(func=foo, result_ttl=-1)  # result never expires--you should delete jobs manually
+```
