@@ -74,3 +74,9 @@ q.enqueue_call(func=foo, result_ttl=86400)  # result expires after 1 day
 q.enqueue_call(func=foo, result_ttl=0)  # result gets deleted immediately
 q.enqueue_call(func=foo, result_ttl=-1)  # result never expires--you should delete jobs manually
 ```
+
+#### Monitor Dashboard
+```
+$ pip install rq-dashboard
+$ rq-dashboard
+```
